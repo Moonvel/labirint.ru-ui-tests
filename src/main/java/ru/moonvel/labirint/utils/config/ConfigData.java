@@ -8,6 +8,16 @@ public enum ConfigData {
             return getProperty("labirint.url");
         }
     },
+    BROWSER_SIZE {
+        public String getValue() {
+            return getProperty("selenide.browserSize");
+        }
+    },
+    BROWSER {
+        public String getValue() {
+            return getProperty("selenide.browser");
+        }
+    },
     VK_LOGIN {
         public String getValue() {
             return getProperty("labirint.auth.vk.login");

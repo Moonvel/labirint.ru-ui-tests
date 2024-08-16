@@ -30,3 +30,4 @@ AllureExtension.class используется для интеграции Selen
 Это позволяет автоматически собирать данные для отчетов Allure.
 2. **Настройка AllureSelenide:** Слушатель AllureSelenide настроен на создание скриншотов (screenshots(true))
 и отключение сохранения исходного кода страницы (savePageSource(false)).
+
