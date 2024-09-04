@@ -1,1 +1,0 @@
-# labirint.ru-ui-tests
