@@ -30,4 +30,8 @@ AllureExtension.class используется для интеграции Selen
 Это позволяет автоматически собирать данные для отчетов Allure.
 2. **Настройка AllureSelenide:** Слушатель AllureSelenide настроен на создание скриншотов (screenshots(true))
 и отключение сохранения исходного кода страницы (savePageSource(false)).
+### BeforeUITestSetUp
+BeforeUITestSetUp.class передает base_url, открывает браузер и закрывает cookie policy перед каждым тестом.
+### AfterUITestClear.class
+AfterUITestClear.class производит очистку кеша, куки и хранилища после каждого теста, для избежания конфликтов между тестами.
 
