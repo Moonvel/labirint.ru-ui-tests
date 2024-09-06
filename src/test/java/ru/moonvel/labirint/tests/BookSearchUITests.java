@@ -1,32 +1,33 @@
 package ru.moonvel.labirint.tests;
 
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Description;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import ru.moonvel.labirint.assertions.BookAssertions;
 import ru.moonvel.labirint.dto.book.BookOnInfo;
 import ru.moonvel.labirint.dto.book.BookOnSearch;
-import ru.moonvel.labirint.page.BookInfoPage;
-import ru.moonvel.labirint.page.BookPreviewOnSearchPage;
-import ru.moonvel.labirint.page.HeaderPage;
-import ru.moonvel.labirint.page.LoginPage;
-import ru.moonvel.labirint.page.SearchResultsPage;
-import ru.moonvel.labirint.page.VkPage;
+import ru.moonvel.labirint.page.*;
 import ru.moonvel.labirint.test_data.BookDataFabric;
-import ru.moonvel.labirint.utils.callbacks.AfterUITestClear;
+import ru.moonvel.labirint.utils.callbacks.SelenideExtension;
 import ru.moonvel.labirint.utils.callbacks.AllureExtension;
-import ru.moonvel.labirint.utils.callbacks.BeforeUITestSetUp;
 import ru.moonvel.labirint.utils.callbacks.ConfigExtension;
 
 import java.util.ArrayList;
 
-import static ru.moonvel.labirint.utils.config.ConfigData.VK_LOGIN;
-import static ru.moonvel.labirint.utils.config.ConfigData.VK_PASSWORD;
+import static ru.moonvel.labirint.utils.config.ConfigData.*;
 
-@ExtendWith({ConfigExtension.class, AllureExtension.class, BeforeUITestSetUp.class, AfterUITestClear.class})
+@ExtendWith({ConfigExtension.class, AllureExtension.class, SelenideExtension.class})
 public class BookSearchUITests {
+
+    @BeforeEach
+    public void beforeEach() {
+        Selenide.open(BASE_URL.getValue());
+        CookiesPage.of().clickCookiePolicyButton();
+    }
 
     @Test
     @Description("Тест проверяет, что при поиске книги 'Java Полное руководство' находятся только "

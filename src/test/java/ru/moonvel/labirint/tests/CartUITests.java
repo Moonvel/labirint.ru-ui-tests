@@ -1,25 +1,30 @@
 package ru.moonvel.labirint.tests;
 
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Description;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import ru.moonvel.labirint.assertions.BookAssertions;
 import ru.moonvel.labirint.dto.book.BookOnCart;
 import ru.moonvel.labirint.dto.book.BookOnSearch;
-import ru.moonvel.labirint.page.BookPreviewOnCartPage;
-import ru.moonvel.labirint.page.BookPreviewOnSearchPage;
-import ru.moonvel.labirint.page.CartPage;
-import ru.moonvel.labirint.page.HeaderPage;
-import ru.moonvel.labirint.page.SearchResultsPage;
+import ru.moonvel.labirint.page.*;
 import ru.moonvel.labirint.test_data.BookDataFabric;
-import ru.moonvel.labirint.utils.callbacks.AfterUITestClear;
+import ru.moonvel.labirint.utils.callbacks.SelenideExtension;
 import ru.moonvel.labirint.utils.callbacks.AllureExtension;
-import ru.moonvel.labirint.utils.callbacks.BeforeUITestSetUp;
 import ru.moonvel.labirint.utils.callbacks.ConfigExtension;
 
-@ExtendWith({ConfigExtension.class, AllureExtension.class, BeforeUITestSetUp.class, AfterUITestClear.class})
+import static ru.moonvel.labirint.utils.config.ConfigData.BASE_URL;
+
+@ExtendWith({ConfigExtension.class, AllureExtension.class, SelenideExtension.class})
 public class CartUITests {
+
+	@BeforeEach
+	public void beforeEach() {
+		Selenide.open(BASE_URL.getValue());
+		CookiesPage.of().clickCookiePolicyButton();
+	}
 
 	@Test
 	@Description("Во время теста происходит поиск книги 'Жизнь и удивительные приключения морехода Робинзона Крузо'," +
